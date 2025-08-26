@@ -4,36 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- DYNAMIC SEO TAGS -->
     <title>{{post.title || 'Blog Post'}} | Nishad Phule</title>
     <link rel="icon" href="../FAVI/favicon.ico" type="image/x-icon"> 
     <meta name="description" content="{{post.excerpt}}">
     <link rel="canonical" ng-href="{{canonicalUrl}}">
 
-    <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="{{post.title}}">
     <meta property="og:description" content="{{post.excerpt}}">
     <meta property="og:url" content="{{canonicalUrl}}">
     <meta property="og:type" content="article">
 
-    <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{post.title}}">
     <meta name="twitter:description" content="{{post.excerpt}}">
     
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Tinos:wght@700&family=Gelasio:wght@400&display=swap" rel="stylesheet">
-    <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
-    <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; padding-top: 96px; }
+        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
         .logo-font { font-family: 'Tinos', serif; }
         .article-content h3 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
@@ -56,37 +49,67 @@
 </head>
 <body class="text-gray-800" ng-controller="postController">
 
-    <!-- Page Loader -->
     <div class="page-loader" ng-if="isLoading">
         <div class="spinner"></div>
     </div>
 
     <div class="min-h-screen bg-white flex flex-col content-wrapper" ng-class="{'ng-hide': isLoading}">
-        <!-- Header -->
-        <header id="main-header" class="border-b border-gray-200/75 fixed top-0 w-full bg-white/50 backdrop-blur-2xl z-50 transition-all duration-300">
+        <header id="main-header" class="border-b border-white/20 sticky top-0 bg-white/70 backdrop-blur-xl z-50 transition-all duration-300">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div id="header-content" class="grid grid-cols-3 items-center h-24">
-                    <nav class="hidden md:flex items-center space-x-8 text-sm">
-                        <a href="./articles.html" class="text-gray-600 hover:text-gray-900">Articles</a>
-                        <a href="./about.html" class="text-gray-600 hover:text-gray-900">About Me</a>
-                    </nav>
+                    <div class="flex items-center space-x-6">
+                        <nav class="hidden md:flex items-center space-x-8 text-sm">
+                            <a href="./articles.html" class="text-gray-600 hover:text-gray-900 transition-colors tracking-wide">Articles</a>
+                            <a href="./about.html" class="text-gray-600 hover:text-gray-900 transition-colors tracking-wide">About Me</a>
+                        </nav>
+                    </div>
+
                     <div class="text-center">
-                        <a href="./main.html" id="logo-link" class="font-bold text-gray-900 uppercase logo-font tracking-wider inline-flex items-baseline">
-                           <span id="logo-n" class="text-4xl">N</span><span id="logo-ishad" class="text-2xl">ishad</span>
-                           <span id="logo-p" class="text-4xl ml-2">P</span><span id="logo-hule" class="text-2xl">hule</span>
+                        <a href="main.html" id="logo-link" class="font-bold text-gray-900 uppercase logo-font tracking-wider inline-flex items-baseline">
+                           <span id="logo-n" class="text-3xl sm:text-4xl">N</span><span id="logo-ishad" class="text-xl sm:text-2xl">ishad</span>
+                           <span id="logo-p" class="text-3xl sm:text-4xl ml-2">P</span><span id="logo-hule" class="text-xl sm:text-2xl">hule</span>
                         </a>
                     </div>
+
                     <div class="flex items-center justify-end space-x-5">
-                         <a href="https://twitter.com/nishad_phule" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                         </a>
-                         <a href="mailto:nishadphule@gmail.com" class="text-gray-500 hover:text-gray-900"><i data-feather="mail" class="h-5 w-5"></i></a>
+                        <div class="hidden md:flex items-center space-x-5">
+                             <a href="https://twitter.com/nishad_phule" target="_blank" class="text-gray-500 hover:text-gray-900 transition-colors">
+                                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                             </a>
+                              <a href="mailto:nishadphule@gmail.com" class="text-gray-500 hover:text-gray-900 transition-colors"><i data-feather="mail" class="h-5 w-5"></i></a>
+                        </div>
+                        <div class="md:hidden">
+                            <button id="menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                                <i data-feather="menu" class="h-6 w-6"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
-        
-        <!-- Main Content -->
+
+        <div id="menu-overlay" class="fixed inset-0 bg-black/30 z-40 hidden md:hidden transition-opacity duration-300"></div>
+        <div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 bg-white/60 backdrop-blur-xl border-l border-white/20 shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+            <div class="p-5 flex justify-end">
+                <button id="close-btn" class="text-gray-600 hover:text-gray-900">
+                    <i data-feather="x" class="h-6 w-6"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col p-5 space-y-4">
+                <a href="./main.html" class="mobile-menu-link text-gray-800 hover:bg-gray-500/10 p-3 rounded-md transition-all duration-300 opacity-0 transform -translate-x-5">Home</a>
+                <a href="./articles.html" class="mobile-menu-link text-gray-800 hover:bg-gray-500/10 p-3 rounded-md transition-all duration-300 opacity-0 transform -translate-x-5">Articles</a>
+                <a href="./about.html" class="mobile-menu-link text-gray-800 hover:bg-gray-500/10 p-3 rounded-md transition-all duration-300 opacity-0 transform -translate-x-5">About Me</a>
+                <div class="border-t border-gray-400/20 pt-4 mt-2"></div>
+                <a href="https://twitter.com/nishad_phule" target="_blank" class="mobile-menu-link flex items-center space-x-3 text-gray-800 hover:bg-gray-500/10 p-3 rounded-md transition-all duration-300 opacity-0 transform -translate-x-5">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    <span>Twitter</span>
+                </a>
+                <a href="mailto:nishadphule@gmail.com" class="mobile-menu-link flex items-center space-x-3 text-gray-800 hover:bg-gray-500/10 p-3 rounded-md transition-all duration-300 opacity-0 transform -translate-x-5">
+                    <i data-feather="mail" class="h-5 w-5"></i>
+                    <span>Email</span>
+                </a>
+            </nav>
+        </div>
         <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="max-w-3xl mx-auto">
                 <a href="./articles.html" class="mb-8 text-gray-600 hover:text-gray-900 font-semibold flex items-center">
@@ -102,7 +125,6 @@
             </div>
         </main>
         
-        <!-- Footer -->
         <footer class="bg-white/40 backdrop-blur-xl text-gray-500 text-xs border-t border-gray-200/75">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-5">
                 <div class="flex justify-between items-center">
@@ -115,7 +137,6 @@
         </footer>
     </div>
 
-    <!-- Share Button Component -->
     <div class="group fixed bottom-8 right-8 z-50">
         <div class="share-options absolute bottom-20 right-0 flex flex-col items-center space-y-3 opacity-0 invisible transform scale-95 -translate-y-4">
             <a href="javascript:void(0);" id="copyLinkBtn" class="w-12 h-12 rounded-full bg-white/40 backdrop-blur-lg shadow-lg flex items-center justify-center text-gray-800 hover:bg-white/60 hover:scale-110 transition-all duration-200" title="Copy Link"><i data-feather="link-2" class="w-6 h-6"></i></a>
@@ -173,7 +194,42 @@
         document.addEventListener("DOMContentLoaded", function() {
             feather.replace();
             
-            // --- ADDED DYNAMIC HEADER SCRIPT ---
+            // --- Hamburger Menu Logic ---
+            const menuBtn = document.getElementById('menu-btn');
+            const closeBtn = document.getElementById('close-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const navLinks = mobileMenu.querySelectorAll('.mobile-menu-link'); // Using class selector
+            const body = document.body;
+
+            const openMenu = () => {
+                mobileMenu.classList.remove('translate-x-full');
+                menuOverlay.classList.remove('hidden');
+                body.classList.add('overflow-hidden');
+                navLinks.forEach((link, index) => {
+                    setTimeout(() => {
+                        link.classList.remove('opacity-0', '-translate-x-5');
+                    }, 150 + (index * 75)); 
+                });
+            };
+
+            const closeMenu = () => {
+                mobileMenu.classList.add('translate-x-full');
+                menuOverlay.classList.add('hidden');
+                body.classList.remove('overflow-hidden');
+                navLinks.forEach(link => {
+                    link.classList.add('opacity-0', '-translate-x-5');
+                });
+            };
+
+            if (menuBtn && closeBtn && mobileMenu) {
+                menuBtn.addEventListener('click', openMenu);
+                closeBtn.addEventListener('click', closeMenu);
+                menuOverlay.addEventListener('click', closeMenu);
+            }
+
+            
+            // --- Dynamic Header Script ---
             const headerContent = document.getElementById('header-content');
             const logoSpans = {
                 n: document.getElementById('logo-n'),
@@ -193,13 +249,14 @@
                 } else {
                     headerContent.classList.remove('h-14');
                     headerContent.classList.add('h-24');
-                    logoSpans.n.className = 'text-4xl';
-                    logoSpans.ishad.className = 'text-2xl';
-                    logoSpans.p.className = 'text-4xl ml-2';
-                    logoSpans.hule.className = 'text-2xl';
+                    logoSpans.n.className = 'text-3xl sm:text-4xl';
+                    logoSpans.ishad.className = 'text-xl sm:text-2xl';
+                    logoSpans.p.className = 'text-3xl sm:text-4xl ml-2';
+                    logoSpans.hule.className = 'text-xl sm:text-2xl';
                 }
             });
 
+            // --- Share Button Logic ---
             const copyLinkBtn = document.getElementById('copyLinkBtn');
             const copyFeedback = document.getElementById('copy-feedback');
 
