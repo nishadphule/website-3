@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="postApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- DYNAMIC SEO TAGS -->
+    <title>{{post.title || 'Blog Post'}} | Nishad Phule</title>
+    <link rel="icon" href="../FAVI/favicon.ico" type="image/x-icon"> 
+    <meta name="description" content="{{post.excerpt}}">
+    <link rel="canonical" ng-href="{{canonicalUrl}}">
+
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:title" content="{{post.title}}">
+    <meta property="og:description" content="{{post.excerpt}}">
+    <meta property="og:url" content="{{canonicalUrl}}">
+    <meta property="og:type" content="article">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{post.title}}">
+    <meta name="twitter:description" content="{{post.excerpt}}">
+    
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Tinos:wght@700&family=Gelasio:wght@400&display=swap" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; padding-top: 96px; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+        .logo-font { font-family: 'Tinos', serif; }
+        .article-content h3 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
+        .article-content p { font-family: 'Gelasio', serif; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; }
+        #header-content, #logo-link, #logo-link span { transition: all 0.3s ease-in-out; }
+        .page-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #F9FAFB; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease-out; }
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #333; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .content-wrapper.ng-hide { opacity: 0; }
+        .content-wrapper { transition: opacity 0.5s ease-in; opacity: 1; }
+        .share-options { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .group:hover .share-options { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .share-options a { transition: all 0.2s ease-in-out; transform: scale(0); opacity: 0; }
+        .group:hover .share-options a { transform: scale(1); opacity: 1; }
+        .group:hover .share-options a:nth-child(1) { transition-delay: 0.1s; }
+        .group:hover .share-options a:nth-child(2) { transition-delay: 0.15s; }
+        .group:hover .share-options a:nth-child(3) { transition-delay: 0.2s; }
+        .group:hover .share-options a:nth-child(4) { transition-delay: 0.25s; }
+    </style>
+</head>
+<body class="text-gray-800" ng-controller="postController">
+
+    <!-- Page Loader -->
+    <div class="page-loader" ng-if="isLoading">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="min-h-screen bg-white flex flex-col content-wrapper" ng-class="{'ng-hide': isLoading}">
+        <!-- Header -->
+        <header id="main-header" class="border-b border-gray-200/75 fixed top-0 w-full bg-white/50 backdrop-blur-2xl z-50 transition-all duration-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div id="header-content" class="grid grid-cols-3 items-center h-24">
+                    <nav class="hidden md:flex items-center space-x-8 text-sm">
+                        <a href="./articles.html" class="text-gray-600 hover:text-gray-900">Articles</a>
+                        <a href="./about.html" class="text-gray-600 hover:text-gray-900">About Me</a>
+                    </nav>
+                    <div class="text-center">
+                        <a href="./main.html" id="logo-link" class="font-bold text-gray-900 uppercase logo-font tracking-wider inline-flex items-baseline">
+                           <span id="logo-n" class="text-4xl">N</span><span id="logo-ishad" class="text-2xl">ishad</span>
+                           <span id="logo-p" class="text-4xl ml-2">P</span><span id="logo-hule" class="text-2xl">hule</span>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-end space-x-5">
+                         <a href="https://twitter.com/nishad_phule" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                         </a>
+                         <a href="mailto:nishadphule@gmail.com" class="text-gray-500 hover:text-gray-900"><i data-feather="mail" class="h-5 w-5"></i></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="max-w-3xl mx-auto">
+                <a href="./articles.html" class="mb-8 text-gray-600 hover:text-gray-900 font-semibold flex items-center">
+                    <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Back to Articles
+                </a>
+                <div ng-if="post && post.title">
+                    <p class="text-sm font-semibold uppercase tracking-wider {{post.categoryColor}} inline-block px-3 py-1 rounded-full mb-4">{{post.category}}</p>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">{{post.title}}</h1>
+                    <p class="text-sm text-gray-500 mt-4 mb-8 uppercase tracking-wider">{{post.readTime}} | {{post.date}}</p>
+                    <div class="article-content text-gray-700" ng-bind-html="post.content"></div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-white/40 backdrop-blur-xl text-gray-500 text-xs border-t border-gray-200/75">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                <div class="flex justify-between items-center">
+                    <p>Copyright &copy; 2025 Nishad Phule. All rights reserved.</p>
+                    <div class="flex items-center space-x-3">
+                        <span>🇮🇳</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Share Button Component -->
+    <div class="group fixed bottom-8 right-8 z-50">
+        <div class="share-options absolute bottom-20 right-0 flex flex-col items-center space-y-3 opacity-0 invisible transform scale-95 -translate-y-4">
+            <a href="javascript:void(0);" id="copyLinkBtn" class="w-12 h-12 rounded-full bg-white/40 backdrop-blur-lg shadow-lg flex items-center justify-center text-gray-800 hover:bg-white/60 hover:scale-110 transition-all duration-200" title="Copy Link"><i data-feather="link-2" class="w-6 h-6"></i></a>
+            <a id="whatsappShare" href="#" target="_blank" class="w-12 h-12 rounded-full bg-white/40 backdrop-blur-lg shadow-lg flex items-center justify-center text-green-500 hover:bg-white/60 hover:scale-110 transition-all duration-200" title="Share on WhatsApp"><i data-feather="message-circle" class="w-6 h-6"></i></a>
+            <a id="mailShare" href="#" class="w-12 h-12 rounded-full bg-white/40 backdrop-blur-lg shadow-lg flex items-center justify-center text-red-500 hover:bg-white/60 hover:scale-110 transition-all duration-200" title="Share via Email"><i data-feather="mail" class="w-6 h-6"></i></a>
+            <a id="twitterShare" href="#" target="_blank" class="w-12 h-12 rounded-full bg-white/40 backdrop-blur-lg shadow-lg flex items-center justify-center text-blue-400 hover:bg-white/60 hover:scale-110 transition-all duration-200" title="Share on Twitter"><i data-feather="twitter" class="w-6 h-6"></i></a>
+        </div>
+        <button class="w-16 h-16 rounded-full bg-white/40 backdrop-blur-xl shadow-2xl flex items-center justify-center text-gray-900 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 ease-in-out">
+            <i data-feather="share-2" class="w-7 h-7"></i>
+        </button>
+        <div id="copy-feedback" class="absolute bottom-24 right-0 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-md shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none">Link Copied!</div>
+    </div>
+
+    <script>
+        const app = angular.module('postApp', []);
+        app.controller('postController', function($scope, $http, $sce, $timeout) {
+            $scope.isLoading = true;
+            $scope.post = {};
+            $scope.canonicalUrl = window.location.href.split('?')[0] + '?id=' + new URLSearchParams(window.location.search).get('id');
+
+            const postId = new URLSearchParams(window.location.search).get('id');
+
+            if (postId) {
+                $http.get(`/api/posts/${postId}`)
+                    .then(function(response) {
+                        $scope.post = response.data;
+                        $scope.post.content = $sce.trustAsHtml($scope.post.content);
+                        updateShareLinks();
+                    })
+                    .catch(function(error) {
+                        console.error('Error fetching post:', error);
+                        $scope.post.title = "Error";
+                        $scope.post.content = $sce.trustAsHtml("<p>Could not load the article. Please try again later.</p>");
+                    })
+                    .finally(function() {
+                        $timeout(() => { $scope.isLoading = false; }, 300);
+                    });
+            } else {
+                $scope.isLoading = false;
+                $scope.post.title = "No Article Found";
+                $scope.post.content = $sce.trustAsHtml("<p>No article ID was provided in the URL.</p>");
+            }
+        });
+
+        function updateShareLinks() {
+            setTimeout(() => {
+                const pageUrl = encodeURIComponent(window.location.href);
+                const pageTitle = encodeURIComponent(document.title);
+                document.getElementById('whatsappShare').href = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
+                document.getElementById('mailShare').href = `mailto:?subject=${pageTitle}&body=Check%20out%20this%20article:%20${pageUrl}`;
+                document.getElementById('twitterShare').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+            }, 100);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            feather.replace();
+            
+            // --- ADDED DYNAMIC HEADER SCRIPT ---
+            const headerContent = document.getElementById('header-content');
+            const logoSpans = {
+                n: document.getElementById('logo-n'),
+                ishad: document.getElementById('logo-ishad'),
+                p: document.getElementById('logo-p'),
+                hule: document.getElementById('logo-hule'),
+            };
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    headerContent.classList.remove('h-24');
+                    headerContent.classList.add('h-14');
+                    logoSpans.n.className = 'text-2xl';
+                    logoSpans.ishad.className = 'text-lg';
+                    logoSpans.p.className = 'text-2xl ml-2';
+                    logoSpans.hule.className = 'text-lg';
+                } else {
+                    headerContent.classList.remove('h-14');
+                    headerContent.classList.add('h-24');
+                    logoSpans.n.className = 'text-4xl';
+                    logoSpans.ishad.className = 'text-2xl';
+                    logoSpans.p.className = 'text-4xl ml-2';
+                    logoSpans.hule.className = 'text-2xl';
+                }
+            });
+
+            const copyLinkBtn = document.getElementById('copyLinkBtn');
+            const copyFeedback = document.getElementById('copy-feedback');
+
+            copyLinkBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    copyFeedback.classList.remove('opacity-0');
+                    setTimeout(() => { copyFeedback.classList.add('opacity-0'); }, 2000);
+                }).catch(err => console.error('Failed to copy text: ', err));
+            });
+        });
+    </script>
+</body>
+</html>

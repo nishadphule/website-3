@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="../FAVI/favicon.ico" type="image/x-icon"> 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Tinos:wght@700&family=Gelasio:wght@400&display=swap" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; padding-top: 96px; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+        .logo-font { font-family: 'Tinos', serif; }
+        .content-text p { font-family: 'Gelasio', serif; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem; }
+        #header-content, #logo-link, #logo-link span { transition: all 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="min-h-screen bg-white flex flex-col">
+        <!-- Header -->
+        <header id="main-header" class="border-b border-gray-200/75 fixed top-0 w-full bg-white/50 backdrop-blur-2xl z-50 transition-all duration-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div id="header-content" class="grid grid-cols-3 items-center h-24">
+                    <div class="flex items-center space-x-6">
+                        <nav class="hidden md:flex items-center space-x-8 text-sm">
+                            <a href="main.html" class="text-gray-600 hover:text-gray-900 transition-colors tracking-wide">Articles</a>
+                            <a href="about.html" class="text-gray-900 font-semibold hover:text-gray-900 transition-colors tracking-wide">About Me</a>
+                        </nav>
+                    </div>
+                    <div class="text-center">
+                        <a href="main.html" id="logo-link" class="font-bold text-gray-900 uppercase logo-font tracking-wider inline-flex items-baseline">
+                           <span id="logo-n" class="text-4xl">N</span><span id="logo-ishad" class="text-2xl">ishad</span>
+                           <span id="logo-p" class="text-4xl ml-2">P</span><span id="logo-hule" class="text-2xl">hule</span>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-end space-x-5">
+                         <a href="https://twitter.com/nishad_phule" class="text-gray-500 hover:text-gray-900 transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                         </a>
+                         <a href="mailto:nishadphule@gmail.com" class="text-gray-500 hover:text-gray-900 transition-colors"><i data-feather="mail" class="h-5 w-5"></i></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="max-w-2xl">
+                <div class="content-text text-gray-700">
+                    <p>i'm just a guy that loves creating things for others.</p>
+                    <p>i started my first company at 13 when i sold dragon ball z tenkaichi budokai 2 in 2009 on ebay.</p>
+                    <p>selling stuff online turned into my high school obsession and i grew that company to $100K in revenue per year by expanding to products like <a href="#" class="text-blue-600 underline">these</a> and <a href="#" class="text-blue-600 underline">these</a>.</p>
+                    <p>been making stuff ever since.</p>
+                    <p>most recently, i was the founder of <a href="#" class="text-blue-600 underline">buildspace</a> — it was the largest school in the world for people working on their own ideas from youtube videos to edm music to companies.</p>
+                    <p>during the company we scaled <a href="#" class="text-blue-600 underline">nights & weekends</a> online to over 100,000 students, <a href="#" class="text-blue-600 underline">raised</a> from a16z/yc, constructed a <a href="#" class="text-blue-600 underline">physical campus</a> in sf for those that wanted to go full-time on their ideas, grew <a href="#" class="text-blue-600 underline">content</a> to millions, and <a href="#" class="text-blue-600 underline">built an ai social product</a> to help people find others like themselves trying to build stuff.</p>
+                    <p>worked on the co for five years. but, i ended up closing it down. <a href="#" class="text-blue-600 underline">here's a letter i wrote about it.</a></p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white/40 backdrop-blur-xl text-gray-500 text-xs border-t border-gray-200/75">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                <div class="flex justify-between items-center">
+                    <p>Copyright &copy; 2025 Nishad Phule. All rights reserved.</p>
+                    <div class="flex items-center space-x-3">
+                        <span>🇮🇳</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Plain JavaScript for DOM manipulations
+        document.addEventListener("DOMContentLoaded", function() {
+            feather.replace();
+
+            // Dynamic Header Script
+            const header = document.getElementById('main-header');
+            const headerContent = document.getElementById('header-content');
+            const logoSpans = {
+                n: document.getElementById('logo-n'),
+                ishad: document.getElementById('logo-ishad'),
+                p: document.getElementById('logo-p'),
+                hule: document.getElementById('logo-hule'),
+            };
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    headerContent.classList.remove('h-24');
+                    headerContent.classList.add('h-12');
+                    logoSpans.n.classList.remove('text-4xl');
+                    logoSpans.n.classList.add('text-2xl');
+                    logoSpans.ishad.classList.remove('text-2xl');
+                    logoSpans.ishad.classList.add('text-base');
+                    logoSpans.p.classList.remove('text-4xl');
+                    logoSpans.p.classList.add('text-2xl');
+                    logoSpans.hule.classList.remove('text-2xl');
+                    logoSpans.hule.classList.add('text-base');
+                    header.classList.remove('bg-white/70', 'backdrop-blur-lg');
+                    header.classList.add('bg-white/20', 'backdrop-blur-3xl');
+                } else {
+                    headerContent.classList.remove('h-12');
+                    headerContent.classList.add('h-24');
+                    logoSpans.n.classList.remove('text-2xl');
+                    logoSpans.n.classList.add('text-4xl');
+                    logoSpans.ishad.classList.remove('text-base');
+                    logoSpans.ishad.classList.add('text-2xl');
+                    logoSpans.p.removeClass('text-2xl');
+                    logoSpans.p.classList.add('text-4xl');
+                    logoSpans.hule.classList.remove('text-base');
+                    logoSpans.hule.classList.add('text-2xl');
+                    header.classList.add('bg-white/70', 'backdrop-blur-lg');
+                    header.classList.remove('bg-white/20', 'backdrop-blur-3xl');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
