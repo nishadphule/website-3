@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="./favicon.ico" type="image/x-icon"> 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Tinos:wght@700&family=Gelasio:wght@400&display=swap" rel="stylesheet">
-    <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; padding-top: 96px; }
@@ -24,8 +21,7 @@
 <body class="text-gray-800">
 
     <div class="min-h-screen bg-white flex flex-col">
-        <!-- Header -->
-        <header id="main-header" class="border-b border-gray-200/75 fixed top-0 w-full bg-white/50 backdrop-blur-2xl z-50 transition-all duration-300">
+        <header id="main-header" class="border-b border-gray-200/75 fixed top-0 w-full bg-white/70 backdrop-blur-2xl z-50 transition-all duration-300">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div id="header-content" class="grid grid-cols-3 items-center h-24">
                     <div class="flex items-center space-x-6">
@@ -36,35 +32,61 @@
                     </div>
                     <div class="text-center">
                         <a href="main.html" id="logo-link" class="font-bold text-gray-900 uppercase logo-font tracking-wider inline-flex items-baseline">
-                           <span id="logo-n" class="text-4xl">N</span><span id="logo-ishad" class="text-2xl">ishad</span>
-                           <span id="logo-p" class="text-4xl ml-2">P</span><span id="logo-hule" class="text-2xl">hule</span>
+                           <span id="logo-n" class="text-3xl sm:text-4xl">N</span><span id="logo-ishad" class="text-xl sm:text-2xl">ishad</span>
+                           <span id="logo-p" class="text-3xl sm:text-4xl ml-2">P</span><span id="logo-hule" class="text-xl sm:text-2xl">hule</span>
                         </a>
                     </div>
                     <div class="flex items-center justify-end space-x-5">
-                         <a href="https://twitter.com/nishad_phule" class="text-gray-500 hover:text-gray-900 transition-colors">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                         </a>
-                         <a href="mailto:nishadphule@gmail.com" class="text-gray-500 hover:text-gray-900 transition-colors"><i data-feather="mail" class="h-5 w-5"></i></a>
+                        <div class="hidden md:flex items-center space-x-5">
+                            <a href="https://twitter.com/nishad_phule" target="_blank" class="text-gray-500 hover:text-gray-900 transition-colors">
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </a>
+                            <a href="mailto:nishadphule@gmail.com" class="text-gray-500 hover:text-gray-900 transition-colors"><i data-feather="mail" class="h-5 w-5"></i></a>
+                        </div>
+                        <div class="md:hidden">
+                            <button id="menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                                <i data-feather="menu" class="h-6 w-6"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- Main Content -->
+        <div id="menu-overlay" class="fixed inset-0 bg-black/30 z-40 hidden md:hidden transition-opacity duration-300"></div>
+
+        <div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 bg-white/60 backdrop-blur-xl border-l z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+            <div class="p-5 flex justify-end">
+                <button id="close-btn" class="text-gray-600 hover:text-gray-900">
+                    <i data-feather="x" class="h-6 w-6"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col p-5 space-y-4">
+                <a href="main.html" class="text-gray-800 p-3 rounded-md transition-all duration-300 opacity-0 transform -translate-x-5">Articles</a>
+                <a href="about.html" class="text-gray-800 p-3 rounded-md transition-all duration-300 opacity-0 transform -translate-x-5">About Me</a>
+                <div class="border-t border-gray-400/20 pt-4 mt-2"></div>
+                <a href="https://twitter.com/nishad_phule" target="_blank" class="flex items-center space-x-3 text-gray-800 p-3 rounded-md transition-all duration-300 opacity-0 transform -translate-x-5">
+                    <i data-feather="twitter" class="h-5 w-5"></i><span>Twitter</span>
+                </a>
+                <a href="mailto:nishadphule@gmail.com" class="flex items-center space-x-3 text-gray-800 p-3 rounded-md transition-all duration-300 opacity-0 transform -translate-x-5">
+                    <i data-feather="mail" class="h-5 w-5"></i><span>Email</span>
+                </a>
+            </nav>
+        </div>
+
         <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="max-w-2xl">
+            <div class="max-w-2xl mx-auto">
                 <div class="content-text text-gray-700">
-                    <p>Hey there, I’m a Computer Science student who spends as much time with finance books as with code</p>
-                    <p>If you ask me, <i>Barbarians at the Gate</i> is the greatest piece of literature ever written, and <i>The Big Short</i> isn’t just a movie, it’s practically my personality</p>
+                    <p>Hey there, I’m a Computer Science student who spends as much time with finance books as with code.</p>
+                    <p>If you ask me, <i>Barbarians at the Gate</i> is the greatest piece of literature ever written, and <i>The Big Short</i> isn’t just a movie, it’s practically my personality.</p>
                     <p>(yes, I’ve memorized the script line by line)</p>
                     <p>This little corner of the internet is where I share my views on finance, economics, and whatever else catches my eye in the markets.</p>
                     <p>I’m here writing, learning, and building.</p>
-                    <p>If you loved the genius cameos explaining subprime mortgages, or just want to see where this journey goes,stick around</p>
+                    <p>If you loved the genius cameos explaining subprime mortgages, or just want to see where this journey goes, stick around.</p>
                 </div>
             </div>
         </main>
 
-        <!-- Footer -->
         <footer class="bg-white/40 backdrop-blur-xl text-gray-500 text-xs border-t border-gray-200/75">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-5">
                 <div class="flex justify-between items-center">
@@ -78,50 +100,77 @@
     </div>
 
     <script>
-        // Plain JavaScript for DOM manipulations
-        document.addEventListener("DOMContentLoaded", function() {
-            feather.replace();
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize Feather Icons
+        feather.replace();
 
-            // Dynamic Header Script
-            const header = document.getElementById('main-header');
-            const headerContent = document.getElementById('header-content');
-            const logoSpans = {
-                n: document.getElementById('logo-n'),
-                ishad: document.getElementById('logo-ishad'),
-                p: document.getElementById('logo-p'),
-                hule: document.getElementById('logo-hule'),
-            };
+        // --- Hamburger Menu Logic ---
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const navLinks = mobileMenu.querySelectorAll('nav a');
+        const body = document.body;
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    headerContent.classList.remove('h-24');
-                    headerContent.classList.add('h-12');
-                    logoSpans.n.classList.remove('text-4xl');
-                    logoSpans.n.classList.add('text-2xl');
-                    logoSpans.ishad.classList.remove('text-2xl');
-                    logoSpans.ishad.classList.add('text-base');
-                    logoSpans.p.classList.remove('text-4xl');
-                    logoSpans.p.classList.add('text-2xl');
-                    logoSpans.hule.classList.remove('text-2xl');
-                    logoSpans.hule.classList.add('text-base');
-                    header.classList.remove('bg-white/70', 'backdrop-blur-lg');
-                    header.classList.add('bg-white/20', 'backdrop-blur-3xl');
-                } else {
-                    headerContent.classList.remove('h-12');
-                    headerContent.classList.add('h-24');
-                    logoSpans.n.classList.remove('text-2xl');
-                    logoSpans.n.classList.add('text-4xl');
-                    logoSpans.ishad.classList.remove('text-base');
-                    logoSpans.ishad.classList.add('text-2xl');
-                    logoSpans.p.removeClass('text-2xl');
-                    logoSpans.p.classList.add('text-4xl');
-                    logoSpans.hule.classList.remove('text-base');
-                    logoSpans.hule.classList.add('text-2xl');
-                    header.classList.add('bg-white/70', 'backdrop-blur-lg');
-                    header.classList.remove('bg-white/20', 'backdrop-blur-3xl');
-                }
+        const openMenu = () => {
+            mobileMenu.classList.remove('translate-x-full');
+            menuOverlay.classList.remove('hidden');
+            body.classList.add('overflow-hidden');
+            navLinks.forEach((link, index) => {
+                setTimeout(() => {
+                    link.classList.remove('opacity-0', '-translate-x-5');
+                }, index * 75);
             });
+        };
+
+        const closeMenu = () => {
+            mobileMenu.classList.add('translate-x-full');
+            menuOverlay.classList.add('hidden');
+            body.classList.remove('overflow-hidden');
+            navLinks.forEach(link => {
+                link.classList.add('opacity-0', '-translate-x-5');
+            });
+        };
+
+        if (menuBtn && closeBtn && mobileMenu) {
+            menuBtn.addEventListener('click', openMenu);
+            closeBtn.addEventListener('click', closeMenu);
+            menuOverlay.addEventListener('click', closeMenu);
+        }
+
+        // --- Dynamic Header Script ---
+        const headerContent = document.getElementById('header-content');
+        const logoSpans = {
+            n: document.getElementById('logo-n'),
+            ishad: document.getElementById('logo-ishad'),
+            p: document.getElementById('logo-p'),
+            hule: document.getElementById('logo-hule'),
+        };
+
+        window.addEventListener('scroll', () => {
+            const isMobile = window.innerWidth < 640; // sm breakpoint in Tailwind
+            const scrollY = window.scrollY;
+            
+            if (scrollY > 50) {
+                headerContent.classList.remove('h-24'); 
+                headerContent.classList.add('h-14');
+                logoSpans.n.className = 'text-2xl'; 
+                logoSpans.ishad.className = 'text-lg';
+                logoSpans.p.className = 'text-2xl ml-2'; 
+                logoSpans.hule.className = 'text-lg';
+            } else {
+                headerContent.classList.remove('h-14'); 
+                headerContent.classList.add('h-24');
+                logoSpans.n.className = isMobile ? 'text-3xl' : 'text-4xl'; 
+                logoSpans.ishad.className = isMobile ? 'text-xl' : 'text-2xl';
+                logoSpans.p.className = isMobile ? 'text-3xl ml-2' : 'text-4xl ml-2'; 
+                logoSpans.hule.className = isMobile ? 'text-xl' : 'text-2xl';
+            }
         });
+        
+        // Trigger scroll event on load to set initial state correctly
+        window.dispatchEvent(new Event('scroll'));
+    });
     </script>
 </body>
 </html>
