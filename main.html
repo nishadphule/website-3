@@ -100,17 +100,15 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <!-- Main Content Area (Left Column) -->
                 <div class="md:col-span-2 fade-in-up" style="animation-delay: 0.2s;">
-                    <div>
-                        <!-- MODIFIED: Added bottom padding and a conditional border -->
-                        <article ng-repeat="post in posts" class="pb-12 md:pb-16" ng-class="{'border-b border-gray-200': !$last}">
-                            <a href="post.html?id={{post.id}}" class="inline-block {{post.categoryColor}} text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-2 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">{{post.category}}</a>
-                            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
-                                <a href="post.html?id={{post.id}}" class="title-link">{{post.title}}</a>
-                            </h2>
-                            <p class="text-base md:text-lg mt-3 leading-relaxed preview-text">{{post.excerpt}}</p>
-                            <p class="text-xs text-gray-500 mt-4 uppercase tracking-wider">{{post.date}}</p>
-                        </article>
-                    </div>
+                    <!-- FIX: Removed the conditional border class -->
+                    <article ng-repeat="post in posts" class="pb-12 md:pb-16">
+                        <a href="post.html?id={{post.id}}" class="inline-block {{post.categoryColor}} text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-2 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">{{post.category}}</a>
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+                            <a href="post.html?id={{post.id}}" class="title-link">{{post.title}}</a>
+                        </h2>
+                        <p class="text-base md:text-lg mt-3 leading-relaxed preview-text">{{post.excerpt}}</p>
+                        <p class="text-xs text-gray-500 mt-4 uppercase tracking-wider">{{post.date}}</p>
+                    </article>
                 </div>
 
                 <!-- Sidebar (Right Column) -->
@@ -166,8 +164,9 @@
             $scope.tweets = [];
             $scope.tickerData = [];
 
+            // FIX: Sort posts by date to show the most recent first
             $http.get('/api/posts').then(function(response) {
-                $scope.posts = response.data.sort((a, b) => b.id - a.id).slice(0, 3);
+                $scope.posts = response.data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
             }).catch(function(error) { console.error('Error fetching posts:', error); });
 
             $http.get('/api/tweets').then(function(response) {
@@ -279,3 +278,4 @@
     </script>
 </body>
 </html>
+
